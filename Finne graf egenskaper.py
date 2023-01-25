@@ -33,8 +33,9 @@ def halveringsmetoden(nedre_grense, øvre_grense, funksjon, navn):
 
     nplist.append(round(x, 2))
 
-# Bruker fsolve funksjonen fra scipy til å finne alle nullpunkter, dette kunne vi også gjort med halveringsmetoden, 
+# Bruker fsolve funksjonen fra scipy til å finne alle nullpunkter, dette kunne vi også gjort med halveringsmetoden,
 # men vi fikk problemer når vi skulle finne flere enn 3 nullpunkter
+
 
 def monotoniegenskaper(ekstremalpunkter):
     for ekstremalpunkt in ekstremalpunkter:
@@ -50,12 +51,14 @@ def monotoniegenskaper(ekstremalpunkter):
                 print(f"Grafen synker når når x = <{ekstremalpunkt}, --->>")
         else:
             if (ekstremalpunkt + ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1])/2 > 0:
-                print(f"Grafen stiger når når x = <{ekstremalpunkt}, {ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1]}>")
+                print(
+                    f"Grafen stiger når når x = <{ekstremalpunkt}, {ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1]}>")
             else:
-                print(f"Grafen synker når når x = <{ekstremalpunkt}, {ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1]}>")
+                print(
+                    f"Grafen synker når når x = <{ekstremalpunkt}, {ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1]}>")
 
 
-def bigfuckingfunction(funksjon, navn, finnkrumning, finnmonotoni):
+def nullpunktsfinder(funksjon, navn, finnkrumning, finnmonotoni):
     nullpunkter_withduplicates = (fsolve(
         funksjon, [x for x in range(int(graf_range_start), int(graf_range_end+1))]))
     nullpunkter = list(dict.fromkeys([round(x, 5)
@@ -78,8 +81,6 @@ def bigfuckingfunction(funksjon, navn, finnkrumning, finnmonotoni):
         pp(i, f(i))
 
 
-
-
 # plotter punkt på grafen
 def pp(x, y):
     plt.plot(x, y, marker=".", markersize=10, markerfacecolor="red")
@@ -88,13 +89,13 @@ def pp(x, y):
 graf_range_start = float(input("Startverdi: "))
 graf_range_end = float(input("Sluttverdi: "))
 
-# Bruker funksjonen "bigfuckingfunction" for å finne nullpunktene på en graf
+# Bruker funksjonen "nullpunktsfinder" for å finne nullpunktene på en graf
 # I dette tilfellet finner vi nullpunktet til f(x), altså finner vi nullpunktene
-bigfuckingfunction(f, "Nullpunkt", finnkrumning=False, finnmonotoni=False)
+nullpunktsfinder(f, "Nullpunkt", finnkrumning=False, finnmonotoni=False)
 
-# Bruker funksjonen "bigfuckingfunction" for å finne nullpunktene på en graf
+# Bruker funksjonen "nullpunktsfinder" for å finne nullpunktene på en graf
 # I dette tilfellet finner vi nullpunktet til den deriverte: df, altså finner vi ekstremalpunktene
-bigfuckingfunction(df, "Ekstremalpunkt", finnkrumning=True, finnmonotoni=True)
+nullpunktsfinder(df, "Ekstremalpunkt", finnkrumning=True, finnmonotoni=True)
 
 # Bruker funksjonen "halveringsmetoden" for å finne nullpunktene på en graf
 # I dette tilfellet finner vi nullpunktet til den dobbelderiverte: ddf, altså finner vi ekstremalpunktene
@@ -112,7 +113,7 @@ for x in nplist_no_duplicates:
 # lager en liste med 1000 verdier mellom start og sluttverdiene
 x = np.linspace(graf_range_start, graf_range_end, 1000)
 
-#Plotter grafer og viser de til brukeren
+# Plotter grafer og viser de til brukeren
 plt.plot(x, f(x), label="f(x)")
 plt.plot(x, df(x), label="df(x)")
 plt.plot(x, ddf(x), label="ddf(x)")
