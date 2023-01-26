@@ -2,8 +2,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 from scipy.optimize import fsolve
 
-# Toppunkt, Bunnpunkt, monotoniegenskaper, krumning og vendepunkt
-
+# Definerer funksjonen, derivert og dobbelderivert av funksjonen
 
 def f(x):
     return -0.6*x**3+x**2+x #Fungerer ikke med konstantledd
@@ -22,6 +21,7 @@ def ddf(x):
 
 nplist = []
 
+# Bruker halveringsmetoden for å finne flere nullpunkter, denne blir brukt til å finne vendepunkter
 
 def halveringsmetoden(nedre_grense, øvre_grense, funksjon, navn):
     for i in range(1, 20):
@@ -33,30 +33,34 @@ def halveringsmetoden(nedre_grense, øvre_grense, funksjon, navn):
 
     nplist.append(round(x, 2))
 
-# Bruker fsolve funksjonen fra scipy til å finne alle nullpunkter, dette kunne vi også gjort med halveringsmetoden,
-# men vi fikk problemer når vi skulle finne flere enn 3 nullpunkter
 
+# Monotoniegenskapene blir lett funnet ved å bruke ekstremalpunktene som allerede er funnet
+# Bare masse if-statements 
 
 def monotoniegenskaper(ekstremalpunkter):
     for ekstremalpunkt in ekstremalpunkter:
         if ekstremalpunkt == ekstremalpunkter[0]:
             if (ekstremalpunkt + ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1])/2 < 0:
-                print(f"Grafen stiger når når x = <<---, {round(ekstremalpunkt, 2)}>")
+                print(f"Grafen stiger når x = <<---, {round(ekstremalpunkt, 2)}>")
             else:
-                print(f"Grafen synker når når x = <<---, {round(ekstremalpunkt, 2)}>")
+                print(f"Grafen synker når x = <<---, {round(ekstremalpunkt, 2)}>")
         if ekstremalpunkt == ekstremalpunkter[-1]:
             if (ekstremalpunkt + ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)-1])/2 < 0:
-                print(f"Grafen stiger når når x = <{round(ekstremalpunkt, 2)}, --->>")
+                print(f"Grafen stiger når x = <{round(ekstremalpunkt, 2)}, --->>")
             else:
-                print(f"Grafen synker når når x = <{round(ekstremalpunkt, 2)}, --->>")
+                print(f"Grafen synker når x = <{round(ekstremalpunkt, 2)}, --->>")
         else:
             if (ekstremalpunkt + ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1])/2 > 0:
                 print(
-                    f"Grafen stiger når når x = <{round(ekstremalpunkt, 2)}, {round(ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1], 2)}>")
+                    f"Grafen stiger når x = <{round(ekstremalpunkt, 2)}, {round(ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1], 2)}>")
             else:
                 print(
-                    f"Grafen synker når når x = <{round(ekstremalpunkt, 2)}, {round(ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1], 2)}>")
+                    f"Grafen synker når x = <{round(ekstremalpunkt, 2)}, {round(ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1], 2)}>")
 
+
+# Bruker fsolve funksjonen fra scipy til å finne alle nullpunkter
+# Hadde tidligere problemer med å finne flere nullpunkter med halveringsmetoden
+# Brukte derfor fsolve for å finne alle nullpunkt i et intervall
 
 def nullpunktsfinder(funksjon, navn, finnkrumning, finnmonotoni):
     nullpunkter_withduplicates = (fsolve(
@@ -81,13 +85,14 @@ def nullpunktsfinder(funksjon, navn, finnkrumning, finnmonotoni):
         pp(i, f(i))
 
 
-# plotter punkt på grafen
+# Plotter punkt på grafen
 def pp(x, y):
-    plt.plot(x, y, marker=".", markersize=10, markerfacecolor="red")
+    plt.plot(x, y, marker=".", markersize=10)
 
 
 graf_range_start = float(input("Startverdi: "))
 graf_range_end = float(input("Sluttverdi: "))
+print("-----------------------------")
 
 # Bruker funksjonen "nullpunktsfinder" for å finne nullpunktene på en graf
 # I dette tilfellet finner vi nullpunktet til f(x), altså finner vi nullpunktene
