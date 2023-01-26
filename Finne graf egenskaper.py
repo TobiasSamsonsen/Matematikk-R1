@@ -6,7 +6,7 @@ from scipy.optimize import fsolve
 
 
 def f(x):
-    return -0.6*x**3+x**2+x+1
+    return -0.6*x**3+x**2+x #Fungerer ikke med konstantledd
 
 
 h = 0.00001
@@ -41,21 +41,21 @@ def monotoniegenskaper(ekstremalpunkter):
     for ekstremalpunkt in ekstremalpunkter:
         if ekstremalpunkt == ekstremalpunkter[0]:
             if (ekstremalpunkt + ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1])/2 < 0:
-                print(f"Grafen stiger når når x = <<---, {ekstremalpunkt}>")
+                print(f"Grafen stiger når når x = <<---, {round(ekstremalpunkt, 2)}>")
             else:
-                print(f"Grafen synker når når x = <<---, {ekstremalpunkt}>")
+                print(f"Grafen synker når når x = <<---, {round(ekstremalpunkt, 2)}>")
         if ekstremalpunkt == ekstremalpunkter[-1]:
             if (ekstremalpunkt + ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)-1])/2 < 0:
-                print(f"Grafen stiger når når x = <{ekstremalpunkt}, --->>")
+                print(f"Grafen stiger når når x = <{round(ekstremalpunkt, 2)}, --->>")
             else:
-                print(f"Grafen synker når når x = <{ekstremalpunkt}, --->>")
+                print(f"Grafen synker når når x = <{round(ekstremalpunkt, 2)}, --->>")
         else:
             if (ekstremalpunkt + ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1])/2 > 0:
                 print(
-                    f"Grafen stiger når når x = <{ekstremalpunkt}, {ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1]}>")
+                    f"Grafen stiger når når x = <{round(ekstremalpunkt, 2)}, {round(ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1], 2)}>")
             else:
                 print(
-                    f"Grafen synker når når x = <{ekstremalpunkt}, {ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1]}>")
+                    f"Grafen synker når når x = <{round(ekstremalpunkt, 2)}, {round(ekstremalpunkter[ekstremalpunkter.index(ekstremalpunkt)+1], 2)}>")
 
 
 def nullpunktsfinder(funksjon, navn, finnkrumning, finnmonotoni):
