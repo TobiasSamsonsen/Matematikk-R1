@@ -2,7 +2,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 from scipy.optimize import fsolve
 
-# Toppunkt, Bunnpunkt, monotoniegenskaper, krumning og vendepunkt
+# Toppunkt, Bunnpunkt, monotoniegenskaper, krumning og vendepunkt f
 
 
 def f(x):
