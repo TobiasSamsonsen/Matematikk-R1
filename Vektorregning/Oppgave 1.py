@@ -20,4 +20,4 @@ y2 = float(input("y2 = "))
 
 lengde = (((x2-x1)**2)+((y2-y1)**2))**0.5
 
-print(f"Lengde = {lengde:0.2f}")
+print(f"Lengden mellom punktene er = {lengde:0.2f}")
