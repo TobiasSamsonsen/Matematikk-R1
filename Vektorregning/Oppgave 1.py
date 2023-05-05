@@ -2,7 +2,7 @@
 # Lag et program som finner avstanden mellom to punkter A(xa, ya) og B(xb,yb)
 # Rund av svarene til 2 desimaler
 
-#Oppgave a
+# Oppgave a
 x = float(input("x = "))
 y = float(input("y = "))
 
@@ -12,7 +12,7 @@ vektor = [x,y]
 print(f"Lengden til vektor {vektor} er {absoluttverdi:0.2f}")
 
 
-#Oppgave b
+# Oppgave b
 x1 = float(input("x1 = "))
 y1 = float(input("y1 = "))
 x2 = float(input("x2 = "))
